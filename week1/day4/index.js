@@ -18,7 +18,7 @@ app.get('/about', (req, res) => {
 
 app.post('/data', (req, res) => {
   const body = req.body;
-  res.status(201).json({ received: body });
+  res.status(200).json({ received: body });
 });
 
 app.get('/users/:id', (req, res) => {
