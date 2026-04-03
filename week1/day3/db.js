@@ -1,16 +1,22 @@
-const mysql = require('mysql2');
-require('dotenv').config();
+const mysql = require('mysql2'); // Hamagara 'mysql2' rimwe gusa hano
+const dotenv = require('dotenv');
 
-// Guhuza na MySQL muri XAMPP
-const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.root,
-    password: process.env.DB_PASSWORD,
-    database: process.env.fluxify_db,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+dotenv.config();
+
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST || '127.0.0.1',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME,
+  port: 3307 // <--- Koresha 3307 kuko niyo XAMPP yawe yafashe
 });
 
-// Gukoresha promises kugira ngo bitworohere gukoresha async/await muri index.js
-module.exports = pool.promise();
+connection.connect((err) => {
+  if (err) {
+    console.error('❌ Database connection failed:', err.message);
+    return;
+  }
+  console.log('✅ Connected to MySQL Database on port 3307!');
+});
+
+module.exports = connection;

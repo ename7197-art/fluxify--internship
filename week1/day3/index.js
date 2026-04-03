@@ -1,53 +1,125 @@
 const express = require('express');
 const morgan = require('morgan');
-const db = require('./db'); // Ihamagara ya dosiye twakoze yo guhuza na MySQL
-require('dotenv').config();
+const dotenv = require('dotenv');
+const db = require('./db'); 
 
+dotenv.config();
 const app = express();
 
-// 1. MIDDLEWARE (Utubuto dufasha server gutunganya amakuru)
-app.use(morgan('dev'));      // Ituma ubona "logs" muri terminal igihe cyose hari uwasuye server
-app.use(express.json());     // Ituma server ishobora gusoma amakuru ya JSON yo muri POST requests
+app.use(morgan('dev'));
+app.use(express.json());
 
-// 2. ROUTES (Inzira amakuru anyuramo)
+// CSS Style - Ibi nibyo bituma amakuru azaragara neza
+const style = `
+<style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #f4f7f6; }
+    h1 { color: #2c3e50; text-align: center; }
+    .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+    th { background-color: #3498db; color: white; }
+    tr:nth-child(even) { background-color: #f2 f2 f2; }
+    tr:hover { background-color: #e1f5fe; }
+    .nav { text-align: center; margin-bottom: 20px; }
+    .nav a { margin: 0 15px; text-decoration: none; color: #3498db; font-weight: bold; }
+    .status { color: green; font-weight: bold; text-align: center; }
+</style>
+`;
 
-// GET / - Message yoikaze (Task 1.2)
+/* ------------------- ROUTES ------------------- */
+
+// 1. Home Route
 app.get('/', (req, res) => {
-    res.json({ message: "Murakaza neza kuri Express Server ya mbere!" });
+    res.send(`
+        ${style}
+        <div class="container">
+            <h1>Library Management System 📚</h1>
+            <p class="status">✅ Database Connected on Port 3307</p>
+            <div class="nav">
+                <a href="/books">Ibitabo (Books)</a>
+                <a href="/members">Abanyamuryango (Members)</a>
+            </div>
+            <p style="text-align:center;">Hitamo rimwe mu mahitamo haruguru kugira ngo urebe amakuru.</p>
+        </div>
+    `);
 });
 
-// GET /users - Kuzana amakuru muri MySQL (Task 2.3)
-app.get('/users', async (req, res) => {
-    try {
-        const [rows] = await db.query("SELECT * FROM users");
-        res.json({
-            success: true,
-            data: rows
+// 2. GET /books - Kugaragaza imbonerahamwe y'ibitabo
+app.get('/books', (req, res) => {
+    db.query('SELECT * FROM Books', (err, results) => {
+        if (err) return res.status(500).send("Database Error");
+
+        let rows = "";
+        results.forEach(book => {
+            rows += `<tr>
+                <td>${book.id || book.book_id}</td>
+                <td>${book.title}</td>
+                <td>${book.author}</td>
+                <td>${book.category || 'N/A'}</td>
+                <td>${book.stock_quantity || 0}</td>
+            </tr>`;
         });
-    } catch (err) {
-        // Handle connection errors (Task 2.4)
-        console.error(err);
-        res.status(500).json({ error: "Habaye ikibazo mu guhuza na database" });
-    }
-});
 
-// POST /test - Kwakira amakuru (Task 1.3)
-app.post('/test', (req, res) => {
-    const data = req.body;
-    res.json({
-        message: "Amakuru yakiriwe neza!",
-        receivedData: data
+        res.send(`
+            ${style}
+            <div class="container">
+                <div class="nav"><a href="/">← Subira Inyuma</a></div>
+                <h1>Urutonde rw'Ibitabo</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Izina ry'Igitabo</th>
+                            <th>Umwanditsi</th>
+                            <th>Ikiciro</th>
+                            <th>Umubare</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>
+        `);
     });
 });
 
-// GET /users/:id - URL Parameter (Task 1.3)
-app.get('/users/:id', (req, res) => {
-    const userId = req.params.id;
-    res.json({ message: `Uri kureba umukoresha ufite ID: ${userId}` });
+// 3. GET /members - Kugaragaza imbonerahamwe y'abanyamuryango
+app.get('/members', (req, res) => {
+    db.query('SELECT * FROM Members', (err, results) => {
+        if (err) return res.status(500).send("Database Error");
+
+        let rows = "";
+        results.forEach(member => {
+            rows += `<tr>
+                <td>${member.id || member.member_id}</td>
+                <td>${member.full_name || member.name}</td>
+                <td>${member.email}</td>
+                <td>${member.membership_date || 'N/A'}</td>
+            </tr>`;
+        });
+
+        res.send(`
+            ${style}
+            <div class="container">
+                <div class="nav"><a href="/">← Subira Inyuma</a></div>
+                <h1>Abanyamuryango ba Library</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Amazina Yuzuye</th>
+                            <th>Email</th>
+                            <th>Itariki yinjiye</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>
+        `);
+    });
 });
 
-// 3. START SERVER
+/* ------------------- SERVER START ------------------- */
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server ikora neza kuri http://localhost:${PORT}`);
+    console.log(`🚀 Server yaka kuri: http://localhost:${PORT}`);
 });
