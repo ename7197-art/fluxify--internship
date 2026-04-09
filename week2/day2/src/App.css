@@ -1,0 +1,223 @@
+cat > src/App.css << 'EOF'
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.main-title {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.components-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+}
+
+.counter-container {
+  text-align: center;
+  padding: 25px;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 100%);
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.counter-value {
+  font-size: 56px;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #2c3e50;
+}
+
+.counter-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.counter-btn {
+  font-size: 32px;
+  width: 70px;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.decrement {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.increment {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.toggle-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.toggle-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 15px 0;
+}
+
+.toggle-content {
+  background-color: #ecf0f1;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.color-picker-container {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.color-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.color-btn {
+  width: 80px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.preview-box {
+  width: 100%;
+  height: 120px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  border: 2px solid #ddd;
+  margin: 15px 0;
+}
+
+.shopping-cart-container {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+.product-list-cart-layout {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.products-grid {
+  flex: 2;
+}
+
+.products-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #27ae60;
+  margin: 10px 0;
+}
+
+.add-to-cart-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.cart-sidebar {
+  flex: 1;
+}
+
+.cart-summary {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-radius: 20px;
+  padding: 25px;
+  color: white;
+  text-align: center;
+}
+
+.cart-count-badge {
+  background: white;
+  color: #e74c3c;
+  font-size: 48px;npm install
+  font-weight: bold;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto;
+}
+
+@media (max-width: 768px) {
+  .components-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-list-cart-layout {
+    flex-direction: column;
+  }
+}
+EOFnpm install
