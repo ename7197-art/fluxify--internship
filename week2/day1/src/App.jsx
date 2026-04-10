@@ -1,8 +1,6 @@
 // 1. Ibuka guhamagara (Import) components zawe zose hano hejuru
 import ProfileCard from './components/ProfileCard';
 import SkillsList from './components/SkillsList';
-import LoginForm from './LoginForm';
-
 
 function App() {
   // 2. Imibare/Data z'abantu (Users)

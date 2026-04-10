@@ -1,15 +1,23 @@
-# Week 2 Day 4: React Forms and Validation
+# Day 4: React Forms with Controlled Inputs & Validation
 
-## Controlled Inputs
-In this project, I used **Controlled Components** to manage form data. This means the form values are handled by React state (`useState`). Each time a user types, the `onChange` event updates the state, and the input's `value` is kept in sync with that state.
+## Overview
+This project contains two React form components demonstrating controlled inputs, form validation, and live preview functionality.
 
-## Form Validation
-Validation is handled during the `onSubmit` event:
-- **Required Fields**: Checks if inputs are empty.
-- **Email Format**: Uses a Regular Expression (Regex) to verify a valid email structure.
-- **Password Length**: Ensures the password is at least 8 characters long.
-- **Match Check**: Compares `password` and `confirmPassword` states.
-- **Error Messages**: If validation fails, error messages are stored in an `errors` object and displayed conditionally below each field.
+## Files
+- `RegistrationForm.jsx` - Registration form with validation
+- `DynamicProfileForm.jsx` - Live profile preview form
 
-## Live Preview
-The profile card uses the same `onChange` mechanism to update a separate `profile` state, allowing the UI to re-render and show changes immediately as the user types.
+## Task 1: Registration Form
+
+### Controlled Inputs Explained
+Controlled inputs in React are form elements whose value is controlled by React state rather than the DOM. Here's how it works:
+
+1. **State Management**: Each input field has a corresponding state value stored in the `formData` object:
+```javascript
+const [formData, setFormData] = useState({
+  fullName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  role: ''
+});
