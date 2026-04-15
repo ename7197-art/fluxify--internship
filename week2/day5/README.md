@@ -1,21 +1,25 @@
-# Team Directory App - Week 2 Day 5
+# Team Directory App
 
-## Screenshot
-![Team Directory App](./screenshot.png)
+A responsive React application that displays and manages a team directory with real-time search and add functionality.
 
-## Project Overview
-A responsive React application for managing team members with real-time search and add functionality.
+## 🚀 Features
 
-## Features
-- Display team members in responsive grid layout
-- Real-time search by name or role
-- Add new team members without page refresh
-- Avatar placeholder for each member
-- Responsive design (1 column mobile, 2 tablet, 3 desktop)
+- **View Team Members**: Display team members as cards with avatar, name, role, and department
+- **Real-time Search**: Filter members by name or role instantly as you type
+- **Add Members**: Form to add new team members without page refresh
+- **Responsive Design**: 1 column on mobile, 2 on tablet, 3 on desktop using Tailwind CSS
+- **Clean Architecture**: Split into 5 focused components
 
-## How to Run
+## 📦 Tech Stack
 
-```bash
-cd team-directory
-npm install
-npm run dev
+- React 18
+- Vite
+- Tailwind CSS
+- JavaScript (ES6+)
+
+## 🛠️ Installation & Running
+
+1. **Clone the repository**
+   ```bash
+   git clone <repo-url>
+   cd team-directory

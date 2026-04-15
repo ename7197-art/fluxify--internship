@@ -1,15 +1,17 @@
-const MemberCard = ({ member }) => {
+// Single responsibility: Display one team member's information
+function MemberCard({ name, role, department, avatar }) {
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
-      <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4 shadow-inner">
-        {member.name[0].toUpperCase()}
+    <div className="bg-white rounded-xl shadow-md p-4 flex items-center space-x-4 border border-gray-100 hover:shadow-lg transition">
+      <div className="text-4xl bg-gray-100 rounded-full w-14 h-14 flex items-center justify-center">
+        {avatar}
       </div>
-      <h3 className="text-lg font-bold text-gray-800">{member.name}</h3>
-      <p className="text-blue-600 font-semibold text-sm uppercase tracking-wide">{member.role}</p>
-      <span className="mt-2 px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full font-medium">
-        {member.department}
-      </span>
+      <div>
+        <h3 className="text-lg font-semibold">{name}</h3>
+        <p className="text-gray-600 text-sm">{role}</p>
+        <p className="text-gray-400 text-xs mt-1">{department}</p>
+      </div>
     </div>
   );
-};
+}
+
 export default MemberCard;

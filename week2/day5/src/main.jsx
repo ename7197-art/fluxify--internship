@@ -1,17 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
 import './index.css'
+import App from './App.jsx'
 
-// Genzura niba ya <div id="root"> iri muri index.html
-const rootElement = document.getElementById('root');
-
-if (rootElement) {
-  ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-  )
-} else {
-  console.error("Ikosa: Ntabwo twabonye 'root' element! Genzura niba muri index.html harimo <div id='root'></div>");
-}
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)

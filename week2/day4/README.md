@@ -1,23 +1,16 @@
-# Day 4: React Forms with Controlled Inputs & Validation
+# React + Vite
 
-## Overview
-This project contains two React form components demonstrating controlled inputs, form validation, and live preview functionality.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Files
-- `RegistrationForm.jsx` - Registration form with validation
-- `DynamicProfileForm.jsx` - Live profile preview form
+Currently, two official plugins are available:
 
-## Task 1: Registration Form
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-### Controlled Inputs Explained
-Controlled inputs in React are form elements whose value is controlled by React state rather than the DOM. Here's how it works:
+## React Compiler
 
-1. **State Management**: Each input field has a corresponding state value stored in the `formData` object:
-```javascript
-const [formData, setFormData] = useState({
-  fullName: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-  role: ''
-});
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

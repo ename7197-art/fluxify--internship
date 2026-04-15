@@ -1,17 +1,16 @@
-const SearchBar = ({ searchTerm, setSearchTerm }) => {
+// Single responsibility: Handle search input UI and state
+function SearchBar({ value, onChange }) {
   return (
-    <div className="relative mb-8">
+    <div className="mb-6">
       <input
         type="text"
-        placeholder="Search by name or role (e.g. Developer)..."
-        className="w-full p-4 pl-12 border-2 border-gray-200 rounded-2xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="🔍 Search by name or role..."
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
-      <div className="absolute left-4 top-4 text-gray-400">
-        🔍
-      </div>
     </div>
   );
-};
+}
+
 export default SearchBar;
